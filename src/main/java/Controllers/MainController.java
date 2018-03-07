@@ -5,15 +5,27 @@
  */
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javafx.scene.control.TextField;
+import Utils.Navigation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import tn.esprit.bondsLiga.bondsLigua_server.services.IHelloServiceRemote;
 
 /**
  * FXML Controller class
@@ -21,24 +33,43 @@ import javafx.scene.paint.Color;
  * @author AGORA
  */
 public class MainController implements Initializable {
+ 
     @FXML
-    private Color x1;
+    private TextField pwd_LE;
+
     @FXML
-    private Label lblHello;
+    private Button login_BT;
+
     @FXML
-    private Button btnHello;
+    private TextField username_LE;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // TODo
     }    
 
     @FXML
-    private void btnHelloOnAction(ActionEvent event) {
-     lblHello.setText("Hello");
+    private void login(ActionEvent event) throws NamingException, IOException {
+  
+    /*String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/HelloService!tn.esprit.bondsLiga.bondsLigua_server.services.IHelloServiceRemote";
+     Context context=new InitialContext();
+     IHelloServiceRemote proxy =(IHelloServiceRemote)context.lookup(jndiName);
+     lblHello.setText(proxy.sayHello("hello"));*/
+    	Navigation nav=new Navigation();
+    	 Parent root = FXMLLoader.load(getClass().getResource(nav.getAdmin()));
+	        Scene scene = new Scene(root);     
+	        Stage st = new Stage();
+	        st.setTitle("Intellix 2.0 Administrator interface ");
+	        st.setScene(scene);
+	        st.show();
+	       
+	        Stage stage = (Stage) login_BT.getScene().getWindow();
+	        // do what you have to do
+	        stage.close();
+	        
     }
   
     

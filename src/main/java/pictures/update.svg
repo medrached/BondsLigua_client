@@ -1,0 +1,25 @@
+<?xml version="1.0"?><svg width="433.3333333333333" height="433.3333333333333" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <linearGradient id="linearGradient1702">
+   <stop stop-color="#ffffff" stop-opacity="0.690722" offset="0" id="stop1703"/>
+   <stop stop-color="#ffffff" stop-opacity="0" offset="1" id="stop1704"/>
+  </linearGradient>
+  <linearGradient id="linearGradient1697">
+   <stop stop-color="#69db0e" offset="0" id="stop1698"/>
+   <stop stop-color="#397607" offset="1" id="stop1699"/>
+  </linearGradient>
+  <linearGradient y2="0.000028" y1="0.962463" xlink:href="#linearGradient1697" x2="0.434766" x1="0.434766" id="linearGradient1076"/>
+  <linearGradient y2="0.933531" y1="0.077503" xlink:href="#linearGradient1697" x2="0.491787" x1="0.491787" id="linearGradient1077"/>
+  <linearGradient y2="1.321187" y1="-0.037698" xlink:href="#linearGradient1702" x2="0.482606" x1="0.478623" id="linearGradient1078"/>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <g id="layer1">
+   <g id="g1073">
+    <path fill="url(#linearGradient1076)" fill-rule="nonzero" stroke="url(#linearGradient1077)" stroke-width="1.364453" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" stroke-dashoffset="0" id="path1070" d="m407.07016,216.666107a190.403656,190.403656 0 1 1 -380.807312,0a190.403656,190.403656 0 1 1 380.807312,0z"/>
+    <path opacity="0.9" fill="url(#linearGradient1078)" fill-rule="evenodd" stroke-width="0.25000000pt" id="path1713" d="m354.980011,166.512772c44.367188,-0.966797 -12.400146,-123.152882 -135.681,-123.802792c-134.561531,-0.687119 -162.095951,110.961361 -140.71946,112.997219c0,0 36.864166,5.062622 71.939583,14.856079c56.472656,15.930817 125.549133,-13.069244 152.768738,-17.2836c30.342468,-4.697876 47.373413,15.392426 51.692139,13.233093z"/>
+   </g>
+  </g>
+  <text font-weight="bold" opacity="0.75" transform="matrix(2.92599, 0, 0, 6.78307, -394.88, -1595.08)" xml:space="preserve" text-anchor="middle" font-family="Arial" font-size="24" id="svg_2" y="275.521396" x="208.909121" stroke-width="0" stroke="#000000" fill="#ffffff">UPDATE</text>
+ </g>
+</svg>
