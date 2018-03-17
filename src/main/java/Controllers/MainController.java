@@ -26,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import tn.esprit.bondsLiga.bondsLigua_server.services.IHelloServiceRemote;
+import tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote;
 
 /**
  * FXML Controller class
@@ -54,23 +55,44 @@ public class MainController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws NamingException, IOException {
   
-    /*String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/HelloService!tn.esprit.bondsLiga.bondsLigua_server.services.IHelloServiceRemote";
-     Context context=new InitialContext();
-     IHelloServiceRemote proxy =(IHelloServiceRemote)context.lookup(jndiName);
-     lblHello.setText(proxy.sayHello("hello"));*/
-    	Navigation nav=new Navigation();
-    	 Parent root = FXMLLoader.load(getClass().getResource(nav.getAdmin()));
-	        Scene scene = new Scene(root);     
-	        Stage st = new Stage();
-	        st.setTitle("Intellix 2.0 Administrator interface ");
-	        st.setScene(scene);
-	        st.show();
-	       
-	        Stage stage = (Stage) login_BT.getScene().getWindow();
-	        // do what you have to do
-	        stage.close();
-	        
+    	
+    	 
+    	String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
+    	Context context=new InitialContext();
+    	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
+      	
+      	
+      	if(proxy.userExists(username_LE.getText(), pwd_LE.getText())){
+      	
+      		
+      	
+      		Navigation nav=new Navigation();
+      		
+       	 Parent root = FXMLLoader.load(getClass().getResource(nav.getAdmin()));
+   	        Scene scene = new Scene(root);     
+   	        Stage st = new Stage();
+   	        st.setTitle("Intellix 2.0 Administrator interface ");
+   	        st.setScene(scene);
+   	        st.show();
+   	       
+   	        Stage stage = (Stage) login_BT.getScene().getWindow();
+   	   
+   	        stage.close();
+      		
+      		
+      			
+      
+      	
+      	}
+      	
+      	else
+      	{
+      		username_LE.setStyle("-fx-background-color:#ff8080;");
+      		pwd_LE.setStyle("-fx-background-color:#ff8080;");
+      		
+      	}
+      	
+    	
     }
   
-    
 }

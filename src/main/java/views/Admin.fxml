@@ -8,6 +8,52 @@
 <AnchorPane id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
    <children>
       <Separator layoutX="264.0" orientation="VERTICAL" prefHeight="658.0" prefWidth="6.0" />
+      <AnchorPane fx:id="DisplayAdmins_AP" layoutX="269.0" prefHeight="658.0" prefWidth="715.0">
+         <children>
+            <ImageView fitHeight="658.0" fitWidth="721.0" layoutY="-1.0">
+               <image>
+                  <Image url="@../pictures/background_brokerage.jpg" />
+               </image>
+            </ImageView>
+            <ListView fx:id="listeAdministrators_LV" onMouseClicked="#chooseAdministrator" prefHeight="444.0" prefWidth="713.0" />
+            <Button fx:id="upgradePrivliegeAdmin_BT" layoutX="538.0" layoutY="561.0" mnemonicParsing="false" onAction="#upgradeAdminPrivileges" prefHeight="25.0" prefWidth="152.0" text="upgrade privileges" />
+            <Button fx:id="deleteAdmin_BT" layoutX="33.0" layoutY="494.0" mnemonicParsing="false" onAction="#deleteAdminAcount" prefHeight="25.0" prefWidth="152.0" text="delete account" />
+            <Button layoutX="285.0" layoutY="562.0" mnemonicParsing="false" onAction="#BanAcountAdmin" prefHeight="25.0" prefWidth="152.0" text="Ban account" />
+            <ImageView fitHeight="18.0" fitWidth="19.0" layoutX="667.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/package-upgrade.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="157.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/delete.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="406.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/ban.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="search_LE" layoutX="203.0" layoutY="494.0" onKeyReleased="#searchAdmin" prefHeight="25.0" prefWidth="308.0" promptText="search administrator" />
+            <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="485.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/search-icon.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="validateAdminAccount_BT" layoutX="538.0" layoutY="494.0" mnemonicParsing="false" onAction="#validateAdminAccount" prefHeight="25.0" prefWidth="152.0" text="Validate account" />
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="659.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/valider.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="detailsAdmin_BT" layoutX="33.0" layoutY="562.0" mnemonicParsing="false" onAction="#showAdminDetails" prefHeight="25.0" prefWidth="152.0" text="details" />
+            <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="153.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/details.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="CreateAdmin_AP" layoutX="268.0" prefHeight="658.0" prefWidth="721.0">
          <children>
             <ImageView fitHeight="658.0" fitWidth="721.0">
@@ -16,7 +62,6 @@
                </image>
             </ImageView>
             <TextField fx:id="username_LE" layoutX="14.0" layoutY="136.0" prefHeight="25.0" prefWidth="284.0" promptText="username" />
-            <TextField fx:id="pwd_LE" layoutX="14.0" layoutY="191.0" prefHeight="25.0" prefWidth="284.0" promptText="password" />
             <TextField fx:id="firstname_LE" layoutX="14.0" layoutY="26.0" prefHeight="25.0" prefWidth="284.0" promptText="firstname" />
             <TextField fx:id="lastname_LE" layoutX="14.0" layoutY="74.0" prefHeight="25.0" prefWidth="284.0" promptText="lastname" />
             <TextField fx:id="email_LE" layoutX="14.0" layoutY="253.0" prefHeight="25.0" prefWidth="284.0" promptText="email" />
@@ -24,6 +69,39 @@
             <ComboBox fx:id="privileges_CB" layoutX="14.0" layoutY="451.0" prefHeight="25.0" prefWidth="284.0" promptText="privileges" />
             <Button fx:id="createAdminAccount_BT" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#add_admin" prefHeight="25.0" prefWidth="284.0" text="create admin account" />
             <DatePicker fx:id="birthDate_DP" layoutX="14.0" layoutY="379.0" prefHeight="25.0" prefWidth="284.0" promptText="birth date" />
+            <PasswordField fx:id="pwd_LE" layoutX="14.0" layoutY="197.0" prefHeight="25.0" prefWidth="284.0" promptText="password" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="DetailsAdmin_AP" layoutX="269.0" prefHeight="444.0" prefWidth="721.0">
+         <children>
+            <TextField fx:id="usernameUpdate_LE" layoutX="159.0" layoutY="71.0" prefHeight="25.0" prefWidth="149.0" />
+            <TextField fx:id="lastnameUpdate_LE" layoutX="159.0" layoutY="131.0" />
+            <TextField fx:id="birthdateUpdate_LE" layoutX="159.0" layoutY="197.0" />
+            <TextField fx:id="registerDateUpdate_LE" layoutX="159.0" layoutY="267.0" />
+            <TextField fx:id="firstNameupdate_LE" layoutX="482.0" layoutY="71.0" />
+            <TextField fx:id="nationalityUpdate_LE" layoutX="482.0" layoutY="131.0" />
+            <TextField fx:id="emailUpdate_LE" layoutX="482.0" layoutY="197.0" />
+            <TextField fx:id="privilegeUpdate_LE" layoutX="482.0" layoutY="267.0" />
+            <Label layoutX="14.0" layoutY="75.0" prefHeight="17.0" prefWidth="133.0" text="User name" />
+            <Label layoutX="14.0" layoutY="135.0" prefHeight="17.0" prefWidth="133.0" text="Last name" />
+            <Label layoutX="14.0" layoutY="201.0" prefHeight="17.0" prefWidth="133.0" text="birth date" />
+            <Label layoutX="14.0" layoutY="271.0" prefHeight="17.0" prefWidth="133.0" text="register date" />
+            <Label layoutX="340.0" layoutY="75.0" prefHeight="17.0" prefWidth="133.0" text="first name" />
+            <Label layoutX="340.0" layoutY="135.0" prefHeight="17.0" prefWidth="133.0" text="Nationality" />
+            <Label layoutX="340.0" layoutY="201.0" prefHeight="17.0" prefWidth="133.0" text="email" />
+            <Label layoutX="335.0" layoutY="271.0" prefHeight="17.0" prefWidth="133.0" text="privilege" />
+            <Button fx:id="updateAdmin_BT" layoutX="406.0" layoutY="349.0" mnemonicParsing="false" onAction="#updateAcountAdmin" prefHeight="25.0" prefWidth="152.0" text="Update account" />
+            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="530.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/stylo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="back_BT" layoutX="182.0" layoutY="349.0" mnemonicParsing="false" onAction="#goBaackAdmin" prefHeight="25.0" prefWidth="152.0" text="back" />
+            <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="200.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/retour.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-2.0" prefHeight="664.0" prefWidth="270.0">
@@ -36,46 +114,6 @@
             <ImageView fitHeight="135.0" fitWidth="261.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../pictures/logojpg.PNG" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="DisplayAdmins_AP" layoutX="269.0" prefHeight="658.0" prefWidth="715.0">
-         <children>
-            <ImageView fitHeight="658.0" fitWidth="721.0">
-               <image>
-                  <Image url="@../pictures/background_brokerage.jpg" />
-               </image>
-            </ImageView>
-            <ListView fx:id="listeAdministrators_LV" onMouseClicked="#chooseAdministrator" prefHeight="444.0" prefWidth="713.0" />
-            <Button fx:id="updateAdmin_BT" layoutX="559.0" layoutY="571.0" mnemonicParsing="false" onAction="#updateAcountAdmin" prefHeight="25.0" prefWidth="152.0" text="Update account" />
-            <Button fx:id="upgradePrivliegeAdmin_BT" layoutX="403.0" layoutY="525.0" mnemonicParsing="false" onAction="#upgradeAdminPrivileges" prefHeight="25.0" prefWidth="152.0" text="upgrade privileges" />
-            <Button fx:id="deleteAdmin_BT" layoutX="559.0" layoutY="525.0" mnemonicParsing="false" onAction="#deleteAdminAcount" prefHeight="25.0" prefWidth="152.0" text="delete account" />
-            <Button layoutX="403.0" layoutY="571.0" mnemonicParsing="false" onAction="#BanAcountAdmin" prefHeight="25.0" prefWidth="152.0" text="Ban account" />
-            <ImageView fitHeight="18.0" fitWidth="19.0" layoutX="532.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../pictures/package-upgrade.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="683.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../pictures/delete.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="527.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../pictures/ban.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="683.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../pictures/stylo.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="search_LE" layoutX="403.0" layoutY="475.0" onKeyReleased="#searchAdmin" prefHeight="25.0" prefWidth="308.0" promptText="search administrator" />
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="683.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../pictures/search-icon.png" />
                </image>
             </ImageView>
          </children>

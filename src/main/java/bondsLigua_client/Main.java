@@ -22,7 +22,7 @@ public class Main extends Application{
 	 @Override
 	    public void start(Stage stage) throws Exception {
 	    	Navigation nav = new Navigation();
-	        Parent root = FXMLLoader.load(getClass().getResource(nav.getTest()));
+	        Parent root = FXMLLoader.load(getClass().getResource(nav.getAdmin()));
 	        Scene scene = new Scene(root);        
 	        stage.setTitle("Intellix 2.0 Login interface");
 	        stage.setScene(scene);

@@ -11,10 +11,35 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <children>
-      <Button fx:id="login_BT" layoutX="226.0" layoutY="242.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="148.0" text="Login" />
-      <TextField fx:id="username_LE" layoutX="226.0" layoutY="90.0" />
-      <TextField fx:id="pwd_LE" layoutX="226.0" layoutY="175.0" />
+      <ImageView fitHeight="413.0" fitWidth="600.0">
+         <image>
+            <Image url="@../pictures/login-background-optimized.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="login_BT" layoutX="226.0" layoutY="259.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="148.0" text="Login" />
+      <TextField fx:id="username_LE" layoutX="226.0" layoutY="127.0" promptText="username" />
+      <ImageView fitHeight="73.0" fitWidth="184.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../pictures/Intellixx.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="347.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../pictures/usernamee.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="346.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../pictures/valider.png" />
+         </image>
+      </ImageView>
+      <PasswordField fx:id="pwd_LE" layoutX="226.0" layoutY="194.0" promptText="password" />
+      <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="346.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../pictures/pwd.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
