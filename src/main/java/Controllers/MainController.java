@@ -35,6 +35,9 @@ import tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote;
  */
 public class MainController implements Initializable {
  
+	
+	String jndiName="bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
+
     @FXML
     private TextField pwd_LE;
 
@@ -56,8 +59,6 @@ public class MainController implements Initializable {
     private void login(ActionEvent event) throws NamingException, IOException {
   
     	
-    	 
-    	String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
     	Context context=new InitialContext();
     	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
       	

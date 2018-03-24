@@ -12,6 +12,9 @@
 	</properties>
 
 	<dependencies>
+	
+
+	
 		<dependency>
 			<groupId>tn.esprit.bondsLiga</groupId>
 			<artifactId>bondsLigua_server-ejb</artifactId>

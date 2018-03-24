@@ -18,7 +18,7 @@
             <ListView fx:id="listeAdministrators_LV" onMouseClicked="#chooseAdministrator" prefHeight="444.0" prefWidth="713.0" />
             <Button fx:id="upgradePrivliegeAdmin_BT" layoutX="538.0" layoutY="561.0" mnemonicParsing="false" onAction="#upgradeAdminPrivileges" prefHeight="25.0" prefWidth="152.0" text="upgrade privileges" />
             <Button fx:id="deleteAdmin_BT" layoutX="33.0" layoutY="494.0" mnemonicParsing="false" onAction="#deleteAdminAcount" prefHeight="25.0" prefWidth="152.0" text="delete account" />
-            <Button layoutX="285.0" layoutY="562.0" mnemonicParsing="false" onAction="#BanAcountAdmin" prefHeight="25.0" prefWidth="152.0" text="Ban account" />
+            <Button layoutX="285.0" layoutY="562.0" mnemonicParsing="false" onAction="#banAcountAdmin" prefHeight="25.0" prefWidth="152.0" text="Ban account" />
             <ImageView fitHeight="18.0" fitWidth="19.0" layoutX="667.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../pictures/package-upgrade.png" />
@@ -67,7 +67,7 @@
             <TextField fx:id="email_LE" layoutX="14.0" layoutY="253.0" prefHeight="25.0" prefWidth="284.0" promptText="email" />
             <TextField fx:id="nationality_LE" layoutX="14.0" layoutY="317.0" prefHeight="25.0" prefWidth="284.0" promptText="nationality" />
             <ComboBox fx:id="privileges_CB" layoutX="14.0" layoutY="451.0" prefHeight="25.0" prefWidth="284.0" promptText="privileges" />
-            <Button fx:id="createAdminAccount_BT" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#add_admin" prefHeight="25.0" prefWidth="284.0" text="create admin account" />
+            <Button fx:id="createAdminAccount_BT" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#addAdmin" prefHeight="25.0" prefWidth="284.0" text="create admin account" />
             <DatePicker fx:id="birthDate_DP" layoutX="14.0" layoutY="379.0" prefHeight="25.0" prefWidth="284.0" promptText="birth date" />
             <PasswordField fx:id="pwd_LE" layoutX="14.0" layoutY="197.0" prefHeight="25.0" prefWidth="284.0" promptText="password" />
          </children>

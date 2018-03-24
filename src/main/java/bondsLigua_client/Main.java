@@ -2,8 +2,7 @@ package bondsLigua_client;
 
 
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
+
 import javax.naming.NamingException;
 
 import Utils.Navigation;
@@ -14,10 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-import tn.esprit.bondsLiga.bondsLigua_server.services.IHelloServiceRemote;
-import tn.esprit.bondsLiga.bondsLigua_server.services.TodoService;
-import tn.esprit.bondsLiga.bondsLigua_server.services.TodoServiceRemote;
-
+@SuppressWarnings({ "unused", "restriction" })
 public class Main extends Application{
 	 @Override
 	    public void start(Stage stage) throws Exception {
@@ -27,20 +23,13 @@ public class Main extends Application{
 	        stage.setTitle("Intellix 2.0 Login interface");
 	        stage.setScene(scene);
 	        stage.show();
-	        
+	      
 	 }
 
 	public static void main(String[] args) throws NamingException  {
 	      launch(args);
 	      
-	      
-	/*//jndiProperties.put("jboss.naming.client.ejb.context", true);
-	String jndiname= "bondsLigua_server-ear/bondsLigua_server-ejb/HelloService!tn.esprit.bondsLiga.bondsLigua_server.services.IHelloServiceRemote";
-	Context context=new InitialContext();
-	IHelloServiceRemote proxy=(IHelloServiceRemote)context.lookup(jndiname);
 	
-	System.out.println(proxy.sayHello("hello"));;
-*/
 	}
 
 }

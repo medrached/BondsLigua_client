@@ -12,25 +12,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import Utils.Navigation;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.*;
 import javafx.scene.input.MouseEvent;
 
 import javafx.stage.*;
-import javafx.scene.paint.Color;
 import tn.esprit.bondsLiga.bondsLigua_server.persistence.Administrator;
-import tn.esprit.bondsLiga.bondsLigua_server.services.IHelloServiceRemote;
 import tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -43,6 +38,8 @@ import javafx.collections.*;
  * @author AGORA
  */
 public class AdminController implements Initializable {
+	
+	String jndiName="bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
 
     private Administrator admin;
     
@@ -143,6 +140,8 @@ public class AdminController implements Initializable {
 	    private TextField nationalityUpdate_LE;
 	    
 	    
+	    
+	    
     /**
      * Initializes the controller class.
      */
@@ -162,7 +161,7 @@ public class AdminController implements Initializable {
       try {
 			this.refreshListView();
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -175,7 +174,6 @@ public class AdminController implements Initializable {
     
     void refreshListView() throws NamingException
     {
-    	  String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
         	Context context=new InitialContext();
         	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
         
@@ -198,20 +196,20 @@ public class AdminController implements Initializable {
                            setText(null);
                            setStyle("");
                        } else {
-                           setText("user name :"+ c.getUsername()+ "           Last name : "+c.getLast_name()+"           first name :"+c.getFirst_name()+"           Nationality : "+c.getNationality()+"           Register date: "+c.getInscription_date());
+                           setText("user name :"+ c.getUsername()+ "           Last name : "+c.getLastName()+"           first name :"+c.getFirstName()+"           Nationality : "+c.getNationality()+"           Register date: "+c.getInscriptionDate());
 
-                    	   if(c.getValidation_level()==0)
+                    	   if(c.getValidationLevel()==0)
 
                     	   {
                                setStyle("-fx-background-color: #F5BCA9");
 
                     	   }
-                    	   else if(c.getValidation_level()==1)
+                    	   else if(c.getValidationLevel()==1)
                     	   {
                                setStyle("-fx-background-color: #F7BE81");
 
                     	   }
-                    	   else if(c.getValidation_level()==2)
+                    	   else if(c.getValidationLevel()==2)
                     	   {
                                setStyle("-fx-background-color: #D0F5A9");
 
@@ -253,18 +251,17 @@ public class AdminController implements Initializable {
 
     
     @FXML
-    void add_admin(ActionEvent event) throws NamingException {
+    void addAdmin(ActionEvent event) throws NamingException {
     
     	
-    	admin.setFirst_name(firstname_LE.getText());
-    	admin.setLast_name(lastname_LE.getText());
-    	admin.setUsername(username_LE.getText());
+    	admin.setFirstName(firstname_LE.getText());
+    	admin.setLastName(lastname_LE.getText());
+    	admin.setUserName(username_LE.getText());
     	admin.setPwd(pwd_LE.getText());
     	admin.setEmail(email_LE.getText());
     	admin.setNationality(nationality_LE.getText());
-    	admin.setValidation_level(0);
-    	//date d'aujourd'hui
-    	//admin.setInscription_date();
+    	admin.setValidationLevel(0);
+
     	
     	
     	
@@ -272,7 +269,7 @@ public class AdminController implements Initializable {
     	admin.setPrivileges(privileges_CB.getSelectionModel().getSelectedItem());
     	
     	Date datenow = new Date();
-    	 admin.setInscription_date(new java.sql.Date(datenow.getTime()));
+    	 admin.setInscriptionDate(new java.sql.Date(datenow.getTime()));
     	 
     	 Date date = Date.from(birthDate_DP.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
     	 admin.setBirthDate(date);
@@ -280,7 +277,6 @@ public class AdminController implements Initializable {
     	 
     	
     	 
-    	String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
     	Context context=new InitialContext();
     	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
     	proxy.createAdmin(admin);
@@ -294,6 +290,9 @@ public class AdminController implements Initializable {
     	pwd_LE.clear();
     	email_LE.clear();
     	nationality_LE.clear();
+    	
+    	
+    	
     	
     }
     
@@ -311,18 +310,16 @@ public class AdminController implements Initializable {
     void updateAcountAdmin(ActionEvent event) throws NamingException {
    	 
     	Administrator adminis=admin;
-    	adminis.setUsername(usernameUpdate_LE.getText());
-    	adminis.setFirst_name(firstNameupdate_LE.getText());
-    	adminis.setLast_name(lastnameUpdate_LE.getText());
+    	adminis.setUserName(usernameUpdate_LE.getText());
+    	adminis.setFirstName(firstNameupdate_LE.getText());
+    	adminis.setLastName(lastnameUpdate_LE.getText());
     	adminis.setEmail(emailUpdate_LE.getText());
     	adminis.setPrivileges(privilegeUpdate_LE.getText());
     	adminis.setNationality(nationalityUpdate_LE.getText());
-    	adminis.setValidation_level(0);
-    	//birthdate
-    	//register date
+    	adminis.setValidationLevel(0);
+
     	
 
-    	String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
     	Context context=new InitialContext();
     	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
     	proxy.updateAdmin(adminis);
@@ -339,31 +336,28 @@ public class AdminController implements Initializable {
     @FXML
     void upgradeAdminPrivileges(ActionEvent event) throws NamingException {
     	
-    	String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
     	Context context=new InitialContext();
     	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
-    	proxy.upgradePrivilege(admin.getUser_id());
+    	proxy.upgradePrivilege(admin.getUserId());
     	this.refreshListView();
 
     }
 
     @FXML
     void deleteAdminAcount(ActionEvent event) throws NamingException {
-    	String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
     	Context context=new InitialContext();
     	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
-    	System.out.println(admin);
-    	proxy.deleteAdmin(admin.getUser_id());
+    	proxy.deleteAdmin(admin.getUserId());
     	this.refreshListView();
     }
 
     @FXML
-    void BanAcountAdmin(ActionEvent event) throws NamingException {
-    	String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
+    void banAcountAdmin(ActionEvent event) throws NamingException {
     	Context context=new InitialContext();
     	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
-    	System.out.println(admin);
-    	proxy.banAcountAdmin(admin.getUser_id());
+    	Logger logger = Logger.getLogger( AdminController.class.getName() );
+    	logger.log( Level.FINE, "admin" );
+    	proxy.banAcountAdmin(admin.getUserId());
     	this.refreshListView();
     }
 
@@ -374,7 +368,6 @@ public class AdminController implements Initializable {
     void searchAdmin(ActionEvent event) throws NamingException {
     	String word=search_LE.getText();
     	
-    	 String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
      	Context context=new InitialContext();
      	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
      
@@ -397,20 +390,20 @@ public class AdminController implements Initializable {
                         setText(null);
                         setStyle("");
                     } else {
-                        setText("user name :"+ c.getUsername()+ "           Last name : "+c.getLast_name()+"           first name :"+c.getFirst_name()+"           Nationality : "+c.getNationality()+"           Register date: "+c.getInscription_date());
+                        setText("user name :"+ c.getUsername()+ "           Last name : "+c.getLastName()+"           first name :"+c.getFirstName()+"           Nationality : "+c.getNationality()+"           Register date: "+c.getInscriptionDate());
 
-                 	   if(c.getValidation_level()==0)
+                 	   if(c.getValidationLevel()==0)
 
                  	   {
                             setStyle("-fx-background-color: #F5BCA9");
 
                  	   }
-                 	   else if(c.getValidation_level()==1)
+                 	   else if(c.getValidationLevel()==1)
                  	   {
                             setStyle("-fx-background-color: #F7BE81");
 
                  	   }
-                 	   else if(c.getValidation_level()==2)
+                 	   else if(c.getValidationLevel()==2)
                  	   {
                             setStyle("-fx-background-color: #D0F5A9");
 
@@ -430,11 +423,10 @@ public class AdminController implements Initializable {
     @FXML
     void validateAdminAccount(ActionEvent event) throws NamingException {
 
-    	String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
     	Context context=new InitialContext();
     	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
     	System.out.println(admin);
-    	proxy.validateAdmin(admin.getUser_id());
+    	proxy.validateAdmin(admin.getUserId());
     	this.refreshListView();
     	
     }
@@ -443,13 +435,13 @@ public class AdminController implements Initializable {
     void showAdminDetails(ActionEvent event) {
     	
     	usernameUpdate_LE.setText(admin.getUsername());
-    	lastnameUpdate_LE.setText(admin.getLast_name());
-    	firstNameupdate_LE.setText(admin.getFirst_name());
+    	lastnameUpdate_LE.setText(admin.getLastName());
+    	firstNameupdate_LE.setText(admin.getFirstName());
     	emailUpdate_LE.setText(admin.getEmail());
     	nationalityUpdate_LE.setText(admin.getNationality());
     	privilegeUpdate_LE.setText(admin.getPrivileges());
     	birthdateUpdate_LE.setText(admin.getBirthDate().toString());
-    	registerDateUpdate_LE.setText(admin.getInscription_date().toString());
+    	registerDateUpdate_LE.setText(admin.getInscriptionDate().toString());
     	
     	
     	
