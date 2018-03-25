@@ -15,6 +15,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javafx.scene.control.TextField;
 import Utils.Navigation;
+import Utils.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,7 @@ import javafx.stage.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import tn.esprit.bondsLiga.bondsLigua_server.persistence.Administrator;
 import tn.esprit.bondsLiga.bondsLigua_server.services.IHelloServiceRemote;
 import tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote;
 
@@ -36,7 +38,7 @@ import tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote;
 public class MainController implements Initializable {
  
 	
-	String jndiName="bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
+	private final	String jndiName="bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
 
     @FXML
     private TextField pwd_LE;
@@ -57,15 +59,15 @@ public class MainController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws NamingException, IOException {
-  
+    	
     	
     	Context context=new InitialContext();
     	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
       	
       	
-      	if(proxy.userExists(username_LE.getText(), pwd_LE.getText())){
+      	if(proxy.adminExists(username_LE.getText(), pwd_LE.getText())){
       	
-      		
+      	
       	
       		Navigation nav=new Navigation();
       		
@@ -77,14 +79,64 @@ public class MainController implements Initializable {
    	        st.show();
    	       
    	        Stage stage = (Stage) login_BT.getScene().getWindow();
-   	   
    	        stage.close();
-      		
-      		
-      			
-      
-      	
+   	        
+   	        Administrator ad =new Administrator();
+   	        ad=proxy.returnAdminConnected(username_LE.getText(), pwd_LE.getText());
+   	        
+   	        Session.admin.setUserId(ad.getUserId());
+   	        Session.admin.setFirstName(ad.getFirstName());
+   	        Session.admin.setLastName(ad.getLastName());
+   	        Session.admin.setEmail(ad.getEmail());
+   	        Session.admin.setUserName(ad.getUsername());
+   	        Session.admin.setBirthDate(ad.getBirthDate());
+   	        Session.admin.setInscriptionDate(ad.getInscriptionDate());
+   	        Session.admin.setValidationLevel(ad.getValidationLevel());
+   	        Session.admin.setPrivileges(ad.getPrivileges());
+   	        
+   	        
+   	        
+   	        
+   	        
+   	                    	
       	}
+      	
+      	
+      	
+      	else if(proxy.traderExists(username_LE.getText(), pwd_LE.getText())){
+      		
+      		Navigation nav=new Navigation();
+      		
+          	 Parent root = FXMLLoader.load(getClass().getResource(nav.getTrader()));
+      	        Scene scene = new Scene(root);     
+      	        Stage st = new Stage();
+      	        st.setTitle("Intellix 2.0 Administrator interface ");
+      	        st.setScene(scene);
+      	        st.show();
+      	       
+      	        Stage stage = (Stage) login_BT.getScene().getWindow();
+      	        stage.close();
+      	}
+      	
+      	
+      	
+      	
+      	else if(proxy.clientExists(username_LE.getText(), pwd_LE.getText())){
+      		Navigation nav=new Navigation();
+      		
+          	 Parent root = FXMLLoader.load(getClass().getResource(nav.getClient()));
+      	        Scene scene = new Scene(root);     
+      	        Stage st = new Stage();
+      	        st.setTitle("Intellix 2.0 Administrator interface ");
+      	        st.setScene(scene);
+      	        st.show();
+      	       
+      	        Stage stage = (Stage) login_BT.getScene().getWindow();
+      	        stage.close();
+      	}
+      	
+      	
+      	
       	
       	else
       	{

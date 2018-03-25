@@ -106,9 +106,9 @@
       </AnchorPane>
       <AnchorPane layoutX="-2.0" prefHeight="664.0" prefWidth="270.0">
          <children>
-            <Button fx:id="createAdminAcount_BT" layoutX="12.0" layoutY="185.0" mnemonicParsing="false" onAction="#show_Create_Admin_Acount_Interface" prefHeight="57.0" prefWidth="247.0" text="Create Administrator Acount" />
-            <Button fx:id="displayAdministrators_BT" layoutX="12.0" layoutY="300.0" mnemonicParsing="false" onAction="#show_display_administrator_interface" prefHeight="57.0" prefWidth="247.0" text="Display Administrators" />
-            <Button layoutX="12.0" layoutY="414.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="247.0" text="Function 1" />
+            <Button fx:id="createAdminAcount_BT" layoutX="12.0" layoutY="317.0" mnemonicParsing="false" onAction="#show_Create_Admin_Acount_Interface" prefHeight="57.0" prefWidth="247.0" text="Create Administrator Acount" />
+            <Button fx:id="displayAdministrators_BT" layoutX="12.0" layoutY="387.0" mnemonicParsing="false" onAction="#show_display_administrator_interface" prefHeight="57.0" prefWidth="247.0" text="Display Administrators" />
+            <Button layoutX="12.0" layoutY="458.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="247.0" text="Function 1" />
             <Button layoutX="12.0" layoutY="526.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="247.0" text="Function 2" />
             <Separator layoutY="158.0" prefHeight="1.0" prefWidth="270.0" />
             <ImageView fitHeight="135.0" fitWidth="261.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -116,6 +116,8 @@
                   <Image url="@../pictures/logojpg.PNG" />
                </image>
             </ImageView>
+            <Label fx:id="adminConnectedUserName_LE" layoutX="61.0" layoutY="175.0" prefHeight="17.0" prefWidth="121.0" />
+            <Label fx:id="adminConnectedPrivilege_LE" layoutX="61.0" layoutY="209.0" prefHeight="17.0" prefWidth="121.0" />
          </children>
       </AnchorPane>
    </children>

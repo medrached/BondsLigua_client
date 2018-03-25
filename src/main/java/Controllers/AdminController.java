@@ -19,6 +19,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import Utils.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.*;
@@ -139,6 +140,13 @@ public class AdminController implements Initializable {
 	    @FXML
 	    private TextField nationalityUpdate_LE;
 	    
+	    @FXML
+	    private Label adminConnectedPrivilege_LE;
+	    
+	    @FXML
+	    private Label adminConnectedUserName_LE;
+
+	    
 	    
 	    
 	    
@@ -148,6 +156,8 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
+    	adminConnectedUserName_LE.setText(Session.admin.getUsername());
+    	adminConnectedPrivilege_LE.setText(Session.admin.getPrivileges());
     	admin=new Administrator();
     	
     	CreateAdmin_AP.setVisible(false);
@@ -240,6 +250,7 @@ public class AdminController implements Initializable {
 
     @FXML
     void show_display_administrator_interface(ActionEvent event) {
+    	
     	DisplayAdmins_AP.setVisible(true);
     	CreateAdmin_AP.setVisible(false);
     	DetailsAdmin_AP.setVisible(false);
