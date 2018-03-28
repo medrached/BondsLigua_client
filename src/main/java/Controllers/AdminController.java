@@ -30,6 +30,7 @@ import tn.esprit.bondsLiga.bondsLigua_server.persistence.Administrator;
 import tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.collections.*;
 
@@ -40,7 +41,7 @@ import javafx.collections.*;
  */
 public class AdminController implements Initializable {
 	
-	String jndiName="bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
+	String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
 
     private Administrator admin;
     
@@ -146,8 +147,7 @@ public class AdminController implements Initializable {
 	    @FXML
 	    private Label adminConnectedUserName_LE;
 
-	    
-	    
+
 	    
 	    
     /**
@@ -159,14 +159,13 @@ public class AdminController implements Initializable {
     	adminConnectedUserName_LE.setText(Session.admin.getUsername());
     	adminConnectedPrivilege_LE.setText(Session.admin.getPrivileges());
     	admin=new Administrator();
-    	
     	CreateAdmin_AP.setVisible(false);
     	DisplayAdmins_AP.setVisible(false);
     	DetailsAdmin_AP.setVisible(false);
     	ObservableList <String> listPrivileges = FXCollections.observableArrayList();
         listPrivileges.addAll("supervisor","super admin","admin");
         privileges_CB.setItems(listPrivileges);
-     
+
         
       try {
 			this.refreshListView();
@@ -192,7 +191,7 @@ public class AdminController implements Initializable {
         		
      
         		
-        	   for (Administrator a :proxy.findAll()) {
+        	   for (Administrator a :proxy.findAll(Session.admin.getUserId())) {
                    liste.add(a);
                }
         	   listeAdministrators_LV.setItems(liste);

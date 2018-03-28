@@ -37,8 +37,9 @@ import tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote;
  */
 public class MainController implements Initializable {
  
+//	bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote
 	
-	private final	String jndiName="bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
+	private final String jndiName="bondsLigua_server-ear/bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
 
     @FXML
     private TextField pwd_LE;
@@ -66,8 +67,10 @@ public class MainController implements Initializable {
       	
       	
       	if(proxy.adminExists(username_LE.getText(), pwd_LE.getText())){
-      	
-      	
+      	   Administrator ad =new Administrator();
+   	        ad=proxy.returnAdminConnected(username_LE.getText(), pwd_LE.getText());
+   	        Session.admin=ad;
+      	 
       	
       		Navigation nav=new Navigation();
       		
@@ -81,19 +84,9 @@ public class MainController implements Initializable {
    	        Stage stage = (Stage) login_BT.getScene().getWindow();
    	        stage.close();
    	        
-   	        Administrator ad =new Administrator();
-   	        ad=proxy.returnAdminConnected(username_LE.getText(), pwd_LE.getText());
+   	     
    	        
-   	        Session.admin.setUserId(ad.getUserId());
-   	        Session.admin.setFirstName(ad.getFirstName());
-   	        Session.admin.setLastName(ad.getLastName());
-   	        Session.admin.setEmail(ad.getEmail());
-   	        Session.admin.setUserName(ad.getUsername());
-   	        Session.admin.setBirthDate(ad.getBirthDate());
-   	        Session.admin.setInscriptionDate(ad.getInscriptionDate());
-   	        Session.admin.setValidationLevel(ad.getValidationLevel());
-   	        Session.admin.setPrivileges(ad.getPrivileges());
-   	        
+   	      
    	        
    	        
    	        

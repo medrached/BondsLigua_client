@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -116,8 +117,25 @@
                   <Image url="@../pictures/logojpg.PNG" />
                </image>
             </ImageView>
-            <Label fx:id="adminConnectedUserName_LE" layoutX="61.0" layoutY="175.0" prefHeight="17.0" prefWidth="121.0" />
-            <Label fx:id="adminConnectedPrivilege_LE" layoutX="61.0" layoutY="209.0" prefHeight="17.0" prefWidth="121.0" />
+            <Label fx:id="adminConnectedUserName_LE" layoutX="95.0" layoutY="200.0" prefHeight="17.0" prefWidth="133.0" textAlignment="CENTER" />
+            <Label fx:id="adminConnectedPrivilege_LE" layoutX="78.0" layoutY="271.0" prefHeight="17.0" prefWidth="111.0" textAlignment="CENTER" />
+            <ImageView fitHeight="18.0" fitWidth="25.0" layoutX="70.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/ADMIN/Project/bondsLigua_client/src/main/java/pictures/connected.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="70.0" layoutY="161.0" text="Connected as ">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="77.0" layoutY="238.0" text="privileges">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+           
+           
          </children>
       </AnchorPane>
    </children>
