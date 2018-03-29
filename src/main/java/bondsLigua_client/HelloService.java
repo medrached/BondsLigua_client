@@ -27,6 +27,7 @@ public class HelloService extends Application{
 	        stage.setTitle("MyJavaFX");
 	        stage.setScene(scene);
 	        stage.show();
+	       
 	 }
 
 	public static void main(String[] args) throws NamingException  {

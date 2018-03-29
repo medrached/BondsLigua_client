@@ -66,7 +66,7 @@ public class MainController implements Initializable {
     	IUserManagementRemote proxy=(IUserManagementRemote)context.lookup(jndiName);
       	
       	
-      	if(proxy.adminExists(username_LE.getText(), pwd_LE.getText())){
+      	if(proxy.adminExists(username_LE.getText(), pwd_LE.getText()) && proxy.returnAdminConnected(username_LE.getText(), pwd_LE.getText()).getValidationLevel()==2){
       	   Administrator ad =new Administrator();
    	        ad=proxy.returnAdminConnected(username_LE.getText(), pwd_LE.getText());
    	        Session.admin=ad;

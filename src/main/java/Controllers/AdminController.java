@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Controllers;
-
+import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
@@ -116,6 +116,14 @@ public class AdminController implements Initializable {
 	    
 
 	    @FXML
+	    private ImageView iconCroix;
+	    
+	    
+
+	    @FXML
+	    private ImageView iconValid;
+
+	    @FXML
 	    private TextField firstNameupdate_LE;
 	    
 	    @FXML
@@ -141,8 +149,7 @@ public class AdminController implements Initializable {
 	    @FXML
 	    private TextField nationalityUpdate_LE;
 	    
-	    @FXML
-	    private Label adminConnectedPrivilege_LE;
+
 	    
 	    @FXML
 	    private Label adminConnectedUserName_LE;
@@ -156,8 +163,36 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
+    	if(Session.admin.getPrivileges().equals("Administrator"))
+    	{
+    		validateAdminAccount_BT.setVisible(false);
+    		deleteAdmin_BT.setVisible(false);
+
+    	    iconCroix.setVisible(false);
+    	    iconValid.setVisible(false);
+    	    createAdminAcount_BT.setVisible(false);
+    	}
+    	else if(Session.admin.getPrivileges().equals("Super admin"))
+    	{
+    		validateAdminAccount_BT.setVisible(true);
+    		deleteAdmin_BT.setVisible(true);
+
+    	    iconCroix.setVisible(true);
+    	    iconValid.setVisible(true);
+    	    createAdminAcount_BT.setVisible(false);
+
+    	}
+    	
+    	else if (Session.admin.getPrivileges().equals("Supervisor"))
+    	{
+    		validateAdminAccount_BT.setVisible(true);
+    		deleteAdmin_BT.setVisible(true);
+
+    	    iconCroix.setVisible(true);
+    	    iconValid.setVisible(true);
+    	    createAdminAcount_BT.setVisible(true);
+    	}
     	adminConnectedUserName_LE.setText(Session.admin.getUsername());
-    	adminConnectedPrivilege_LE.setText(Session.admin.getPrivileges());
     	admin=new Administrator();
     	CreateAdmin_AP.setVisible(false);
     	DisplayAdmins_AP.setVisible(false);
@@ -374,8 +409,13 @@ public class AdminController implements Initializable {
 
     
 
+    
+    
+    
     @FXML
-    void searchAdmin(ActionEvent event) throws NamingException {
+    void searchAdmin(KeyEvent event) throws NamingException {
+    	
+    	
     	String word=search_LE.getText();
     	
      	Context context=new InitialContext();
@@ -386,7 +426,7 @@ public class AdminController implements Initializable {
      		
   
      		
-     	   for (Administrator a :proxy.searchAdmins(word)) {
+     	   for ( Administrator a :proxy.searchAdmins(word,Session.admin.getUserId())) {
                 liste.add(a);
             }
      	   listeAdministrators_LV.setItems(liste);
