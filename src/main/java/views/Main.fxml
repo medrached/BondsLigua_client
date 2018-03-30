@@ -41,5 +41,6 @@
             <Image url="@../pictures/pwd.png" />
          </image>
       </ImageView>
+      <Button fx:id="registerBT" layoutX="54.0" layoutY="367.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="25.0" prefWidth="120.0" text="Not yet Registred ?" />
    </children>
 </AnchorPane>

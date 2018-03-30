@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterController">
+   <children>
+      <AnchorPane prefHeight="664.0" prefWidth="270.0">
+         <children>
+            <Separator layoutY="158.0" prefHeight="1.0" prefWidth="270.0" />
+            <ImageView fitHeight="135.0" fitWidth="261.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/logojpg.PNG" />
+               </image>
+            </ImageView>
+            <Label layoutX="89.0" layoutY="173.0" text="Registration">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <Separator layoutX="42.0" layoutY="182.0" prefHeight="3.0" prefWidth="40.0" />
+            <Separator layoutX="191.0" layoutY="183.0" prefHeight="3.0" prefWidth="40.0" />
+            <Separator layoutX="229.0" layoutY="183.0" orientation="VERTICAL" prefHeight="79.0" prefWidth="6.0" />
+            <Separator layoutX="43.0" layoutY="256.0" prefHeight="10.0" prefWidth="187.0" />
+            <Separator layoutX="41.0" layoutY="182.0" orientation="VERTICAL" prefHeight="79.0" prefWidth="6.0" />
+         </children>
+      </AnchorPane>
+      <TextField fx:id="usernameLE" layoutX="349.0" layoutY="40.0" prefHeight="25.0" prefWidth="262.0" promptText="username" />
+      <TextField fx:id="firstNameLE" layoutX="345.0" layoutY="217.0" prefHeight="25.0" prefWidth="262.0" promptText="First name" />
+      <TextField fx:id="lastnameLE" layoutX="345.0" layoutY="289.0" prefHeight="25.0" prefWidth="262.0" promptText="Last name" />
+      <TextField fx:id="nationalityLE" layoutX="345.0" layoutY="497.0" prefHeight="25.0" prefWidth="262.0" promptText="Nationality" />
+      <TextField fx:id="emailLE" layoutX="345.0" layoutY="354.0" prefHeight="25.0" prefWidth="262.0" promptText="Email" />
+      <Button fx:id="registerBT" layoutX="446.0" layoutY="548.0" mnemonicParsing="false" onAction="#registerClient" text="Register" />
+      <DatePicker fx:id="birthDateDP" layoutX="345.0" layoutY="425.0" prefHeight="25.0" prefWidth="270.0" />
+      <PasswordField fx:id="passwordTF" layoutX="349.0" layoutY="99.0" onKeyReleased="#validatePassword" prefHeight="25.0" prefWidth="262.0" promptText="password" />
+      <PasswordField fx:id="passwordConfirmTF" layoutX="345.0" layoutY="159.0" onKeyReleased="#passwordConform" prefHeight="25.0" prefWidth="270.0" promptText="confirm password" />
+   </children>
+</AnchorPane>

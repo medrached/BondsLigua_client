@@ -114,6 +114,9 @@ public class AdminController implements Initializable {
 	    @FXML
 	    private Button back_BT;
 	    
+	    @FXML
+	    private ImageView iconAdd;
+	    
 
 	    @FXML
 	    private ImageView iconCroix;
@@ -171,6 +174,7 @@ public class AdminController implements Initializable {
     	    iconCroix.setVisible(false);
     	    iconValid.setVisible(false);
     	    createAdminAcount_BT.setVisible(false);
+    	    iconAdd.setVisible(false);
     	}
     	else if(Session.admin.getPrivileges().equals("Super admin"))
     	{
@@ -180,13 +184,14 @@ public class AdminController implements Initializable {
     	    iconCroix.setVisible(true);
     	    iconValid.setVisible(true);
     	    createAdminAcount_BT.setVisible(false);
-
+    	    iconAdd.setVisible(false);
     	}
     	
     	else if (Session.admin.getPrivileges().equals("Supervisor"))
     	{
     		validateAdminAccount_BT.setVisible(true);
     		deleteAdmin_BT.setVisible(true);
+    		iconAdd.setVisible(true);
 
     	    iconCroix.setVisible(true);
     	    iconValid.setVisible(true);
@@ -198,7 +203,7 @@ public class AdminController implements Initializable {
     	DisplayAdmins_AP.setVisible(false);
     	DetailsAdmin_AP.setVisible(false);
     	ObservableList <String> listPrivileges = FXCollections.observableArrayList();
-        listPrivileges.addAll("supervisor","super admin","admin");
+        listPrivileges.addAll("Supervisor","Super admin","Administrator");
         privileges_CB.setItems(listPrivileges);
 
         

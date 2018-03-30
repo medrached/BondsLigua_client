@@ -6,7 +6,7 @@ public class Navigation {
 	private final String admin="/views/Admin.fxml";
 	private final String trader="/views/Trader.fxml";
 	private final String client="/views/Client.fxml";
-	
+	private final String register="/views/Register.fxml";
 	
 	
 	public String getTest() {
@@ -23,5 +23,9 @@ public class Navigation {
 		return client;
 	}
 	
+	public String getRegister()
+	{
+		return register;
+	}
 
 }

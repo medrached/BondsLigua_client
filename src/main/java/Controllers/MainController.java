@@ -27,6 +27,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import tn.esprit.bondsLiga.bondsLigua_server.persistence.Administrator;
+import tn.esprit.bondsLiga.bondsLigua_server.persistence.Client;
+import tn.esprit.bondsLiga.bondsLigua_server.persistence.Trader;
 import tn.esprit.bondsLiga.bondsLigua_server.services.IHelloServiceRemote;
 import tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote;
 
@@ -49,6 +51,9 @@ public class MainController implements Initializable {
 
     @FXML
     private TextField username_LE;
+    
+    @FXML
+    private Button registerBT;
 
     /**
      * Initializes the controller class.
@@ -96,8 +101,14 @@ public class MainController implements Initializable {
       	
       	
       	
-      	else if(proxy.traderExists(username_LE.getText(), pwd_LE.getText())){
+      	else if(proxy.traderExists(username_LE.getText(), pwd_LE.getText()))
+      	{
       		
+      		
+       	  Trader t =new Trader();
+	        t=proxy.returnTraderConnected(username_LE.getText(), pwd_LE.getText());
+	        Session.trader=t;
+  	 
       		Navigation nav=new Navigation();
       		
           	 Parent root = FXMLLoader.load(getClass().getResource(nav.getTrader()));
@@ -115,6 +126,11 @@ public class MainController implements Initializable {
       	
       	
       	else if(proxy.clientExists(username_LE.getText(), pwd_LE.getText())){
+      		
+      	  
+      		Client  c=proxy.returnClientConnected(username_LE.getText(), pwd_LE.getText());
+ 	        Session.client=c;
+    	 
       		Navigation nav=new Navigation();
       		
           	 Parent root = FXMLLoader.load(getClass().getResource(nav.getClient()));
@@ -138,6 +154,22 @@ public class MainController implements Initializable {
       		
       	}
       	
+    	
+    }
+    
+    @FXML
+    void goToRegister(ActionEvent event) throws IOException {
+    	Navigation nav=new Navigation();
+  		
+     	 Parent root = FXMLLoader.load(getClass().getResource(nav.getRegister()));
+ 	        Scene scene = new Scene(root);     
+ 	        Stage st = new Stage();
+ 	        st.setTitle("Intellix 2.0 Administrator interface ");
+ 	        st.setScene(scene);
+ 	        st.show();
+ 	       
+ 	        Stage stage = (Stage) login_BT.getScene().getWindow();
+ 	        stage.close();
     	
     }
   

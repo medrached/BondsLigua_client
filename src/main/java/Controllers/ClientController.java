@@ -15,6 +15,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javafx.scene.control.TextField;
 import Utils.Navigation;
+import Utils.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,11 @@ import tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote;
  */
 public class ClientController implements Initializable {
  
+    @FXML
+    private Label clientConnectedUserNameTF;
+
+    @FXML
+    private Label clientConnectedMoneyTF;
 	
 	String jndiName="bondsLigua_server-ejb/UserManagement!tn.esprit.bondsLiga.bondsLigua_server.services.IUserManagementRemote";
 
@@ -42,8 +48,8 @@ public class ClientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	
-    	
-    	
+    	clientConnectedUserNameTF.setText(Session.client.getUsername());
+    	clientConnectedMoneyTF.setText(String.valueOf(Session.client.getCurrentMoneyAccount())+"  $");
     }    
 
    
