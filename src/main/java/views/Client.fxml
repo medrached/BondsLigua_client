@@ -11,9 +11,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ClientController">
    <children>
-      <AnchorPane prefHeight="664.0" prefWidth="270.0">
+      <AnchorPane layoutY="-1.0" prefHeight="665.0" prefWidth="223.0">
          <children>
             <Separator layoutY="158.0" prefHeight="1.0" prefWidth="270.0" />
             <ImageView fitHeight="135.0" fitWidth="261.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -45,5 +45,103 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <TabPane layoutX="270.0" prefHeight="800.0" prefWidth="932.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="onglet1" text="Manage your offers">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane id="AnchorPane" layoutX="1.0" layoutY="4.0" prefHeight="684.0" prefWidth="993.0">
+                           <children>
+                              <ImageView fx:id="deleteZCBond" fitHeight="56.0" fitWidth="50.0" layoutX="761.0" layoutY="592.0" onMouseClicked="#deleteZCBond" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pictures/008-x-button.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="updateZCBond" fitHeight="50.0" fitWidth="61.0" layoutX="634.0" layoutY="592.0" onMouseClicked="#updateZCBond" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pictures/006-draw.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="addZCBond" fitHeight="75.0" fitWidth="61.0" layoutX="497.0" layoutY="586.0" onMouseClicked="#addZCBond" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pictures/009-plus.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="39.0" layoutY="509.0" text="Interest Rate" textFill="#01004d">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="35.0" layoutY="452.0" text="Coupon every" textFill="#01004d">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="37.0" layoutY="403.0" text="Price" textFill="#01004d">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="35.0" layoutY="350.0" text="Amount" textFill="#01004d">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="35.0" layoutY="293.0" text="Maturity Date" textFill="#01004d">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="37.0" layoutY="237.0" text="Strating Date" textFill="#01004d">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="interestRate_txt" layoutX="150.0" layoutY="506.0" prefHeight="25.0" prefWidth="163.0" promptText="per cent" />
+                              <TextField fx:id="price_txt" layoutX="150.0" layoutY="401.0" prefHeight="25.0" prefWidth="163.0" />
+                              <Label layoutX="115.0" layoutY="12.0" prefHeight="116.0" prefWidth="337.0" text="ISSUE A BOND" textAlignment="CENTER" textFill="#130036de">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="37.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="back" fitHeight="61.0" fitWidth="61.0" layoutX="12.0" layoutY="33.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../png/005-back.png" />
+                                 </image>
+                              </ImageView>
+                              <DatePicker fx:id="startingDate_txt" layoutX="150.0" layoutY="234.0" prefHeight="25.0" prefWidth="163.0" />
+                              <DatePicker fx:id="maturityDate_txt" layoutX="150.0" layoutY="290.0" prefHeight="25.0" prefWidth="163.0" />
+                              <TextField fx:id="amount_txt" layoutX="150.0" layoutY="347.0" prefHeight="25.0" prefWidth="163.0" />
+                              <TableView fx:id="tab" layoutX="321.0" layoutY="126.0" prefHeight="430.0" prefWidth="609.0">
+                                 <columns>
+                                    <TableColumn fx:id="reference_col" prefWidth="71.0" text="reference" />
+                                    <TableColumn fx:id="startingDate_col" prefWidth="88.0" text="startingDate" />
+                                    <TableColumn fx:id="maturityDate_col" prefWidth="105.0" text="maturityDate" />
+                                    <TableColumn fx:id="amount_col" prefWidth="86.0" text="amount" />
+                                    <TableColumn fx:id="price_col" minWidth="3.0" prefWidth="62.0" text="price" />
+                                    <TableColumn fx:id="paymentPeriod_col" prefWidth="91.0" text="paymentPeriod" />
+                                    <TableColumn fx:id="interestRate_col" prefWidth="124.0" text="interestRate" />
+                                 </columns>
+                              </TableView>
+                              <TextField fx:id="period_txt" layoutX="150.0" layoutY="450.0" prefHeight="25.0" prefWidth="163.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="onglet2" text="View market offers">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab fx:id="onglet3" text="Confirmed bonds">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
