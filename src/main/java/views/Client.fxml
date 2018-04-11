@@ -133,12 +133,42 @@
           </Tab>
           <Tab fx:id="onglet2" text="View market offers">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tab1" layoutX="105.0" layoutY="33.0" prefHeight="430.0" prefWidth="609.0">
+                           <columns>
+                              <TableColumn fx:id="reference_col1" prefWidth="71.0" text="reference" />
+                              <TableColumn fx:id="startingDate_col1" prefWidth="88.0" text="startingDate" />
+                              <TableColumn fx:id="maturityDate_col1" prefWidth="105.0" text="maturityDate" />
+                              <TableColumn fx:id="amount_col1" prefWidth="86.0" text="amount" />
+                              <TableColumn fx:id="price_col1" minWidth="3.0" prefWidth="62.0" text="price" />
+                              <TableColumn fx:id="paymentPeriod_col1" prefWidth="91.0" text="paymentPeriod" />
+                              <TableColumn fx:id="interestRate_col1" prefWidth="124.0" text="interestRate" />
+                           </columns>
+                        </TableView>
+                        <Label fx:id="FV_label" layoutX="105.0" layoutY="518.0" prefHeight="29.0" prefWidth="120.0" text="Future value" />
+                        <TextField fx:id="FV_txt" layoutX="225.0" layoutY="520.0" />
+                        <Button fx:id="confirm" layoutX="225.0" layoutY="596.0" mnemonicParsing="false" onAction="#Confirm" prefHeight="52.0" prefWidth="155.0" text="Confirm" />
+                        <Button fx:id="negotiate" layoutX="466.0" layoutY="596.0" mnemonicParsing="false" onAction="#Negotiate" prefHeight="52.0" prefWidth="155.0" text="Negotiate" />
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab fx:id="onglet3" text="Confirmed bonds">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tab2" layoutX="115.0" layoutY="43.0" prefHeight="430.0" prefWidth="609.0">
+                           <columns>
+                              <TableColumn fx:id="reference_col2" prefWidth="71.0" text="reference" />
+                              <TableColumn fx:id="startingDate_col2" prefWidth="88.0" text="startingDate" />
+                              <TableColumn fx:id="maturityDate_col3" prefWidth="105.0" text="maturityDate" />
+                              <TableColumn fx:id="amount_col3" prefWidth="86.0" text="amount" />
+                              <TableColumn fx:id="price_col3" minWidth="3.0" prefWidth="62.0" text="price" />
+                              <TableColumn fx:id="paymentPeriod_col3" prefWidth="91.0" text="paymentPeriod" />
+                              <TableColumn fx:id="interestRate_col3" prefWidth="124.0" text="interestRate" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>

@@ -48,6 +48,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.beans.EventHandler;
 import java.net.URL;
@@ -147,6 +148,48 @@ public class ClientController implements Initializable {
     private Tab onglet2;
     @FXML
     private Tab onglet3;
+    @FXML
+    private TableView<Bond> tab1= new TableView<Bond>();
+    ObservableList<Bond> data1 = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<?, ?> reference_col1;
+    @FXML
+    private TableColumn<?, ?> startingDate_col1;
+    @FXML
+    private TableColumn<?, ?> maturityDate_col1;
+    @FXML
+    private TableColumn<?, ?> amount_col1;
+    @FXML
+    private TableColumn<?, ?> price_col1;
+    @FXML
+    private TableColumn<?, ?> paymentPeriod_col1;
+    @FXML
+    private TableColumn<?, ?> interestRate_col1;
+    @FXML
+    private Label FV_label;
+    @FXML
+    private TextField FV_txt;
+    @FXML
+    private Button confirm;
+    @FXML
+    private Button negotiate;
+    @FXML
+    private TableView<Bond> tab2= new TableView<Bond>();
+    ObservableList<Bond> data2 = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<?, ?> reference_col2;
+    @FXML
+    private TableColumn<?, ?> startingDate_col2;
+    @FXML
+    private TableColumn<?, ?> maturityDate_col3;
+    @FXML
+    private TableColumn<?, ?> amount_col3;
+    @FXML
+    private TableColumn<?, ?> price_col3;
+    @FXML
+    private TableColumn<?, ?> paymentPeriod_col3;
+    @FXML
+    private TableColumn<?, ?> interestRate_col3;
 
     /**
      * Initializes the controller class.
@@ -157,6 +200,8 @@ public class ClientController implements Initializable {
     	clientConnectedMoneyTF.setText(String.valueOf(Session.client.getCurrentMoneyAccount())+"  $");
 		try {
 			afficherrevenu();
+			afficher1();
+			afficher2();
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,8 +215,18 @@ public class ClientController implements Initializable {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+            });        
+        tab1.getSelectionModel().selectedItemProperty().
+            addListener((observable1, oldValue1, newValue1) -> {
+                    
+                     try {
+        			    FutureValue(newValue1);
+        					} catch (Exception e) {
+        			   // TODO Auto-generated catch block
+        						e.printStackTrace();
+        					}            
                 
-                   
+                    
             });
     }    
 
@@ -249,6 +304,8 @@ public class ClientController implements Initializable {
    				Double.parseDouble(amount_txt.getText()),
    				Double.parseDouble(price_txt.getText()),
                 Integer.parseInt(period_txt.getText()),
+                false,
+                0,
                 t,
                 Double.parseDouble(interestRate_txt.getText())
         );
@@ -351,6 +408,124 @@ public class ClientController implements Initializable {
 
 	        }
     	
+    }
+    
+    private void afficher1() throws NamingException {
+    	BondBusiness b=new BondBusiness();		
+		reference_col1.setCellValueFactory(new PropertyValueFactory<>("reference"));
+		 startingDate_col1.setCellValueFactory(new PropertyValueFactory<>("startingDate"));
+		 maturityDate_col1.setCellValueFactory(new PropertyValueFactory<>("maturityDate"));
+		 amount_col1.setCellValueFactory(new PropertyValueFactory<>("amount"));
+		 price_col1.setCellValueFactory(new PropertyValueFactory<>("price"));
+		 paymentPeriod_col1.setCellValueFactory(new PropertyValueFactory<>("paymentPeriod"));
+		 interestRate_col1.setCellValueFactory(new PropertyValueFactory<>("interestRate"));
+		    List<Bond> o = b.DisplayAllBond();
+			for (Bond e : o) {
+				if((e.getIdIssuer()!=Session.client.getUserId())&&(e.isConfirmation()==false))
+				{data1.add(e); 
+				for(int i = 0; i < o.size(); i++) {
+		            System.out.println(o.get(i).getStartingDate());
+		        }
+				}
+				
+			}
+			
+			tab1.setItems(data1);	
+    }
+    
+    private void afficher2() throws NamingException {
+    	BondBusiness b=new BondBusiness();		
+		reference_col2.setCellValueFactory(new PropertyValueFactory<>("reference"));
+		 startingDate_col2.setCellValueFactory(new PropertyValueFactory<>("startingDate"));
+		 maturityDate_col3.setCellValueFactory(new PropertyValueFactory<>("maturityDate"));
+		 amount_col3.setCellValueFactory(new PropertyValueFactory<>("amount"));
+		 price_col3.setCellValueFactory(new PropertyValueFactory<>("price"));
+		 paymentPeriod_col3.setCellValueFactory(new PropertyValueFactory<>("paymentPeriod"));
+		 interestRate_col3.setCellValueFactory(new PropertyValueFactory<>("interestRate"));
+		    List<Bond> o = b.DisplayAllBond();
+			for (Bond e : o) {
+				if(e.getIdInvester()==Session.client.getUserId()){
+				data2.add(e); 
+				for(int i = 0; i < o.size(); i++) {
+		            //System.out.println(o.get(i).getUser().getUserId());
+		        }
+				}
+				
+			}
+			
+			tab2.setItems(data2);	
+    }
+    
+    
+    @FXML
+    private void Confirm(ActionEvent event) throws NamingException {
+    	
+    	BondBusiness b=new BondBusiness();
+    	
+    	if (tab1.getSelectionModel().getSelectedItem() != null) {
+            BondZeroCoupon r = (BondZeroCoupon) tab1.getSelectionModel().getSelectedItem();
+            System.out.println(r.getIdIssuer());
+            r.setConfirmation(true);
+            r.setIdInvester(Session.client.getUserId());
+            r.setUser(Session.client);      	
+        	b.updateBond(r);
+			tab1.getItems().clear();
+			tab2.getItems().clear();
+
+			afficher1();
+			afficher2();
+        	 }
+    }
+
+    @FXML
+    private void Negotiate(ActionEvent event) throws NamingException {
+    	afficher2();
+    }
+    
+    private void FutureValue(Bond b) throws ParseException{
+    	BondZeroCoupon e=(BondZeroCoupon) b;
+    	String idnew;        
+        idnew = Integer.toString(e.getReference());
+        
+        idnew = Integer.toString(e.getReference());
+        SimpleDateFormat inFmt = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat outFmt = new SimpleDateFormat("dd/MM/yyyy");
+        String sdate = outFmt.format(inFmt.parse(e.getStartingDate()));
+
+
+        try {
+            DateTimeFormatter formatter
+                    = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate date1 = LocalDate.parse(sdate, formatter);
+            
+
+        } catch (DateTimeParseException exc) {
+
+        }
+        SimpleDateFormat inFmt2 = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat outFmt2 = new SimpleDateFormat("dd/MM/yyyy");
+        String mdate = outFmt2.format(inFmt2.parse(e.getMaturityDate()));
+
+
+        try {
+            DateTimeFormatter formatter
+                    = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate date2 = LocalDate.parse(mdate, formatter);
+            
+        long numberOfYears = ChronoUnit.YEARS.between(LocalDate.parse(sdate, formatter), LocalDate.parse(mdate, formatter));
+
+        
+        System.out.println(numberOfYears);
+        
+
+        
+        double fv;
+        int n;
+        n=(12/e.getPaymentPeriod());
+        System.out.println("n="+n);
+        fv=e.getAmount()*(Math.pow((1+(e.getInterestRate()/(100*numberOfYears))),numberOfYears*(n)));
+        FV_txt.setText(String.valueOf(fv));
+        } catch (DateTimeParseException exc){}
     }
     
 }
